@@ -1,10 +1,12 @@
 # O(1) example [Constant Time]
 def constant_time_example(array):
-    return array[0]
+    return array[1]
 
 array = [1, 2, 3, 4, 5]
 result = constant_time_example(array)
-print(result)  # Output: 1
+print("Constant Time Example: Retrieving An Array Element")
+print("We will print the second element of this array: [1, 2, 3, 4, 5]")
+print(result)
 
 # O(log(n)) example [Logarithmic Time]:
 def binary_search(array, target):
@@ -21,8 +23,18 @@ def binary_search(array, target):
 
 sorted_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 target = 7
+target2 = 3
+target3 = 9
 index = binary_search(sorted_array, target)
-print(index)  # Output: 6 (index of 7 in the array)
+index2 = binary_search(sorted_array, target2)
+index3 = binary_search(sorted_array, target3)
+print("Logarithmic Time Example: Binary Search")
+print("We start with this array: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")
+print("and will then find the index of 7, 3, and 9, in that order.")
+print("Indices:")
+print(index) 
+print(index2)
+print(index3)
 
 
 # O(n) example [Linear Time]:
@@ -33,8 +45,16 @@ def linear_time_example(array):
     return total_sum
 
 array = [1, 2, 3, 4, 5]
+array2 = [2, 3, 4, 5]
+array3 = [3, 4, 5, 7]
 result = linear_time_example(array)
-print(result)  # Output: 15 (sum of all elements)
+result2 = linear_time_example(array2)
+result3 = linear_time_example(array3)
+print("Linear Time Example: Adding All Elements In An Array")
+print("Three Arrays We Begin With: [1, 2, 3, 4, 5], [2, 3, 4, 5], [3, 4, 5, 7]")
+print(result)
+print(result2)
+print(result3)
 
 
 # O(n log(n)) example [Quasilinear Time]
@@ -69,8 +89,18 @@ def merge(left, right):
     return result
 
 array = [5, 3, 8, 2, 7, 1, 6, 4]
-sorted_array = merge_sort(array)
-print(sorted_array)  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
+array2 = [6, 4, 9, 1, 8, 1, 5, 4]
+array3 = [5, 9, 10, 21, 2, 1, 7, 4]
+sarray = merge_sort(array)
+sarray2 = merge_sort(array2)
+sarray3 = merge_sort(array3)
+print("Quasilinear Time Example: Merge Sort")
+print("Original Three Arrays: [5, 3, 8, 2, 7, 1, 6, 4], [6, 4, 9, 1, 8, 1, 5, 4], [5, 9, 10, 21, 2, 1, 7, 4]")
+print("Sorted Arrays:")
+print(sarray)
+print(sarray2)
+print(sarray3)
+
 
 
 # O(n^2) example [Quadratic Time]:
@@ -82,8 +112,17 @@ def bubble_sort(array):
                 array[j], array[j + 1] = array[j + 1], array[j]
 
 array = [5, 3, 8, 2, 7, 1, 6, 4]
+array2 = [6, 4, 9, 1, 8, 1, 5, 4]
+array3 = [5, 9, 10, 21, 2, 1, 7, 4]
 bubble_sort(array)
-print(array)  # Output: [1, 2, 3, 4, 5, 6, 7, 8]
+bubble_sort(array2)
+bubble_sort(array3)
+print("Quadratic Time Example: Bubble Sort")
+print("Original Three Arrays: [5, 3, 8, 2, 7, 1, 6, 4], [6, 4, 9, 1, 8, 1, 5, 4], [5, 9, 10, 21, 2, 1, 7, 4]")
+print("Sorted Arrays:")
+print(array)
+print(array2)
+print(array3)
 
 
 # O(n!) example [Factorial Time]
@@ -94,4 +133,10 @@ def factorial(n):
         return n * factorial(n - 1)
 
 result = factorial(5)
-print(result)  # Output: 120 (5!)
+result2 = factorial(7)
+result3 = factorial(9)
+print("Factorial Time Example: Factorial Calculation")
+print("Factorials will be calculated for 5, 7, and 9, in order.")
+print(result)  
+print(result2)
+print(result3)
