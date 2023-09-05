@@ -1,4 +1,4 @@
-#linked list code
+# Basic linked list code
 
 # class for nodes which will exist as object in the linked list
 class Node:
@@ -30,18 +30,18 @@ class LinkedList:
             current = current.next
         print("End")
 
-# code to create, populate, and display a linked list 
+# Code to create, populate, and display a linked list 
 # in the terminal using our two classes
 
 # Create a linked list
 my_linked_list = LinkedList()
 
 # Add values to the linked list
-my_linked_list.append(1)
-my_linked_list.append(2)
 my_linked_list.append(3)
+my_linked_list.append(6)
+my_linked_list.append(9)
 my_linked_list.append(4)
-my_linked_list.append(5)
+my_linked_list.append(2)
 
 # Display the values in the linked list
 print("Now printing Linked List: 'End' will indicate the prior element was the last within the list.")
