@@ -28,7 +28,7 @@ class LinkedList:
         while current:
             print(current.data, end=" -> ")
             current = current.next
-        print("None")
+        print("End")
 
 # code to create, populate, and display a linked list 
 # in the terminal using our two classes
@@ -44,4 +44,5 @@ my_linked_list.append(4)
 my_linked_list.append(5)
 
 # Display the values in the linked list
+print("Now printing Linked List: 'End' will indicate the prior element was the last within the list.")
 my_linked_list.display()
