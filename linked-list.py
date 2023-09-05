@@ -37,11 +37,13 @@ class LinkedList:
 my_linked_list = LinkedList()
 
 # Add values to the linked list
-my_linked_list.append(3)
-my_linked_list.append(6)
-my_linked_list.append(9)
-my_linked_list.append(4)
-my_linked_list.append(2)
+
+while True:
+    try:
+        value = int(input("Enter a value (or any non-integer to stop): "))
+        my_linked_list.append(value)
+    except ValueError:
+        break
 
 # Display the values in the linked list
 print("Now printing Linked List: 'End' will indicate the prior element was the last within the list.")
