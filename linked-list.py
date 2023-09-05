@@ -22,6 +22,27 @@ class LinkedList:
             current = current.next
         current.next = new_node
 
+    # function to insert an element into the list at any given index
+    def insert(self, position, data):
+        if position < 0:
+            print("Invalid position. Position should be non-negative.")
+            return
+        new_node = Node(data)
+        if position == 0:
+            new_node.next = self.head
+            self.head = new_node
+            return
+        current = self.head
+        current_position = 0
+        while current_position < position - 1 and current.next:
+            current = current.next
+            current_position += 1
+        if current_position == position - 1:
+            new_node.next = current.next
+            current.next = new_node
+        else:
+            print("Invalid position. Position exceeds the length of the list.")
+
     # function to print all values in a linked list
     def display(self):
         current = self.head
@@ -59,4 +80,16 @@ my_linked_list.remove_first()
 
 # Display the values in the linked list after removal
 print("Linked List after removing the first element:")
+my_linked_list.display()
+
+# Allow the user to insert a value at a specific position
+try:
+    position = int(input("Enter the position to insert (0 for head): "))
+    insert_value = int(input("Enter the value to insert: "))
+    my_linked_list.insert(position, insert_value)
+except ValueError:
+    print("Invalid input for position or value.")
+
+# Display the values in the linked list after insertion
+print("Linked List after insertion:")
 my_linked_list.display()
