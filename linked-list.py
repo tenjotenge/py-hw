@@ -30,6 +30,11 @@ class LinkedList:
             current = current.next
         print("End")
 
+    # function to remove the head of the list
+    def remove_first(self):
+        if self.head:
+            self.head = self.head.next
+
 # Code to create, populate, and display a linked list 
 # in the terminal using our two classes
 
@@ -47,4 +52,11 @@ while True:
 
 # Display the values in the linked list
 print("Now printing Linked List: 'End' will indicate the prior element was the last within the list.")
+my_linked_list.display()
+
+# Remove the first element
+my_linked_list.remove_first()
+
+# Display the values in the linked list after removal
+print("Linked List after removing the first element:")
 my_linked_list.display()
