@@ -56,10 +56,89 @@ class PokerEnvironment:
         elif self.current_round in ('turn', 'river'):
             self.community_cards.append(self.deck.pop())
 
+    def rank_hand(self, player_hand):
+        # Evaluate and rank the player's hand.
+        ranks = '23456789TJQKA'
+        rank_counts = {rank: 0 for rank in ranks}
+        suit_counts = {}
+
+        for card in player_hand:
+            rank_counts[card['rank']] += 1
+            if card['suit'] in suit_counts:
+                suit_counts[card['suit']] += 1
+            else:
+                suit_counts[card['suit']] = 1
+
+        is_flush = any(count >= 5 for count in suit_counts.values())
+        is_straight = False
+
+        for i in range(len(ranks) - 4):
+            if all(rank_counts[ranks[j]] >= 1 for j in range(i, i + 5)):
+                is_straight = True
+                break
+
+        if is_flush and is_straight:
+            return 9  # Straight flush
+        elif any(count == 4 for count in rank_counts.values()):
+            return 8  # Four of a kind
+        elif all(count == 3 or count == 2 for count in rank_counts.values()):
+            return 7  # Full house
+        elif is_flush:
+            return 6  # Flush
+        elif is_straight:
+            return 5  # Straight
+        elif any(count == 3 for count in rank_counts.values()):
+            return 4  # Three of a kind
+        elif sum(1 for count in rank_counts.values() if count == 2) == 2:
+            return 3  # Two pair
+        elif any(count == 2 for count in rank_counts.values()):
+            return 2  # One pair
+        else:
+            return 1  # High card
+
     def determine_winner(self):
-        # Implement hand evaluation logic to determine the winner.
-        # You can use libraries like "pyPokerEngine" for hand evaluation.
-        # Compare the hands of remaining players to find the winner.
+        winners = []
+        best_hand_rank = -1
+
+        for player in self.players:
+            if not player['folded']:
+                player_hand = self.evaluate_hand(player)
+                hand_rank = self.rank_hand(player_hand)
+
+                if hand_rank > best_hand_rank:
+                    best_hand_rank = hand_rank
+                    winners = [player]
+                elif hand_rank == best_hand_rank:
+                    winners.append(player)
+
+        # Distribute the pot to the winning player(s).
+        if len(winners) == 1:
+            winner = winners[0]
+            winner['chips'] += self.pot
+            print(f"Player {winners[0]} wins the pot of {self.pot} chips with a {self.get_hand_name(best_hand_rank)}.")
+        else:
+            # Handle a split pot by equally distributing chips among winners.
+            split_pot = self.pot // len(winners)
+            for winner in winners:
+                winner['chips'] += split_pot
+                print(f"Player {winner} wins {split_pot} chips with a {self.get_hand_name(best_hand_rank)}.")
+
+        # Reset the game state.
+        self.reset_game()
+
+    def get_hand_name(self, rank):
+        hand_names = {
+            1: "High Card",
+            2: "One Pair",
+            3: "Two Pair",
+            4: "Three of a Kind",
+            5: "Straight",
+            6: "Flush",
+            7: "Full House",
+            8: "Four of a Kind",
+            9: "Straight Flush",
+        }
+        return hand_names.get(rank, "Unknown")
 
     def play_game(self):
         self.deal_hole_cards()
