@@ -56,6 +56,55 @@ class LinkedList:
         if self.head:
             self.head = self.head.next
 
+    def remove_duplicates(self):
+        if not self.head:
+            return
+
+        current = self.head
+        while current:
+            runner = current
+            while runner.next:
+                if runner.next.data == current.data:
+                    runner.next = runner.next.next
+                else:
+                    runner = runner.next
+            current = current.next
+
+    def union(self, other_list):
+        union_list = LinkedList()
+        current = self.head
+
+        while current:
+            union_list.append(current.data)
+            current = current.next
+
+        current_other = other_list.head
+        while current_other:
+            if not union_list.contains(current_other.data):
+                union_list.append(current_other.data)
+            current_other = current_other.next
+
+        return union_list
+
+    def intersection(self, other_list):
+        intersection_list = LinkedList()
+        current = self.head
+
+        while current:
+            if other_list.contains(current.data):
+                intersection_list.append(current.data)
+            current = current.next
+
+        return intersection_list
+
+    def contains(self, data):
+        current = self.head
+        while current:
+            if current.data == data:
+                return True
+            current = current.next
+        return False
+
 # Code to create, populate, and display a linked list 
 # in the terminal using our two classes
 
@@ -93,3 +142,58 @@ except ValueError:
 # Display the values in the linked list after insertion
 print("Linked List after insertion:")
 my_linked_list.display()
+
+# We will now create two separate linked lists, then create a third that exists 
+# as the sum of the first two linked lists at each index.
+
+print("Now creating linked list using the sum of two other linked lists to fill the data:")
+
+# Create the first linked list
+list1 = LinkedList()
+print("Enter values for the first linked list (enter a non-integer to stop):")
+while True:
+    try:
+        value = int(input())
+        list1.append(value)
+    except ValueError:
+        break
+
+# Create the second linked list
+list2 = LinkedList()
+print("Enter values for the second linked list (enter a non-integer to stop):")
+while True:
+    try:
+        value = int(input())
+        list2.append(value)
+    except ValueError:
+        break
+
+# Display the first and second linked lists
+print("First Linked List:")
+list1.display()
+print("Second Linked List:")
+list2.display()
+
+# Create the third linked list with sums
+list3 = LinkedList()
+current1 = list1.head
+current2 = list2.head
+while current1 and current2:
+    sum_value = current1.data + current2.data
+    list3.append(sum_value)
+    current1 = current1.next
+    current2 = current2.next
+
+# Display the third linked list
+print("Third Linked List (Sum of the First and Second Lists):")
+list3.display()
+
+# Create the fourth linked list (Union of List 1 and List 2)
+list4 = list1.union(list2)
+print("Fourth Linked List (Union of First and Second Lists):")
+list4.display()
+
+# Create the fifth linked list (Intersection of List 1 and List 2)
+list5 = list1.intersection(list2)
+print("Fifth Linked List (Intersection of First and Second Lists):")
+list5.display()
