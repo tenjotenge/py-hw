@@ -60,6 +60,7 @@ class BlackjackEnvironment:
             hand_value = self.calculate_hand_value(player['hand'])
             print(f"Player {i + 1} Hand: {', '.join([f'{card['rank']} of {card['suit']}' for card in player['hand']])} (Value: {hand_value})")
 
+
 if __name__ == "__main__":
     num_players = 2
     blackjack_env = BlackjackEnvironment(num_players)
