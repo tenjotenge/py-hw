@@ -58,7 +58,8 @@ class BlackjackEnvironment:
     def display_hands(self):
         for i, player in enumerate(self.players):
             hand_value = self.calculate_hand_value(player['hand'])
-            print(f"Player {i + 1} Hand: {', '.join([f'{card['rank']} of {card['suit']}' for card in player['hand']])} (Value: {hand_value})")
+            print(f"Player {i + 1} Hand: " + ', '.join([f"{card['rank']} of {card['suit']}" for card in player['hand']]) + f" (Value: {hand_value})")
+
 
 
 if __name__ == "__main__":
