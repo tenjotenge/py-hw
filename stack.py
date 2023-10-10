@@ -33,9 +33,13 @@ class Stack:
 my_stack = Stack()
 
 # Push elements onto the stack
+print("Pushing first six prime numbers onto the stack.")
 my_stack.push(1)
 my_stack.push(2)
 my_stack.push(3)
+my_stack.push(5)
+my_stack.push(7)
+my_stack.push(11)
 
 # Check if the stack is empty
 print("Is the stack empty?", my_stack.is_empty())
@@ -44,7 +48,7 @@ print("Stack size:", my_stack.size())
 # Get the top element (peek)
 print("Top element:", my_stack.peek())
 
-index = 1
+index = 4
 try:
     element = my_stack.element_at_index(index)
     print(f"Element at index {index}: {element}")
