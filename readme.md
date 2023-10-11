@@ -1,4 +1,4 @@
-project full of homework assignments from WVU Tech
+project full of homework assignments (primarily in python) from WVU Tech
 
 CS355 is Operating System concepts
 
