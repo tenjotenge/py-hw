@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.cluster import KMeans, DBSCAN
 from scipy.cluster.hierarchy import dendrogram, linkage
+import matplotlib.pyplot as plt
 
 # Sample data
 data = np.array([[1, 2], [5, 8], [1.5, 1.8], [8, 8], [1, 0.6], [9, 11]])
@@ -15,9 +16,9 @@ def scatter_plot(data, title):
     max_x, max_y = np.max(data, axis=0)
 
     rows = []
-    for y in range(max_y, min_y - 1, -1):
+    for y in np.arange(max_y, min_y - 1, -1):
         row = []
-        for x in range(min_x, max_x + 1):
+        for x in np.arange(min_x, max_x + 1):
             if [x, y] in data.tolist():
                 row.append("X")
             else:
