@@ -4,7 +4,7 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 import matplotlib.pyplot as plt
 
 # Sample data
-data = np.array([[1, 2], [5, 8], [1.5, 1.8], [8, 8], [1, 0.6], [9, 11]])
+data = np.array([[1, 2], [5, 8], [1.5, 1.8], [8, 8], [1, 0.6], [9, 11], [3, 2.5], [7, 9], [2, 2], [7.5, 7]])
 
 # Print the data
 print("Data:")
